@@ -21,11 +21,12 @@ cap production pg:import
 ```
 
 This will:
+
 1. Dump the database on the server with `--clean and --no-owner` flags, and gzips it. Fetch database name and eventually port from `:release_path/config/database.yml` file
 2. Download the file and uncompress
 3. Import in the database defined in local `database.yml` file
 
-**Known Issues**
+**Known Issues:**
 
 * Does not work with password authentication (for now)
 
@@ -33,8 +34,7 @@ This will:
 
 This task simply stream the `tail -f` results of `log/#{fetch(:rails_env, 'production')}.log` file locally.
 
-**Known Issues**
-If you use Airbrussh, you won't see anything because all the stdout is sent to `log/capistrano.log`. You can either use [my fork](https://github.com/carlesso/airbrussh) or wait for [this pr](https://github.com/mattbrictson/airbrussh/pull/4) to be merged.
+**Known Issues:** If you use Airbrussh, you won't see anything because all the stdout is sent to `log/capistrano.log`. You can either use [my fork](https://github.com/carlesso/airbrussh) or wait for [this pr](https://github.com/mattbrictson/airbrussh/pull/4) to be merged.
 
 ### rails:console
 
