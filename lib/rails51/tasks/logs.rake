@@ -8,7 +8,7 @@ namespace :logs do
   desc 'Tailf production logs'
   task :tail do
     on roles(:app) do
-      Airbrussh.configuration.log_level = :debug if definded?(Airbrussh)
+      Airbrussh.configuration.log_level = :debug if defined?(Airbrussh)
       execute :tail, '-f', release_path.join('log', "#{fetch(:rails_env, 'production')}.log")
     end
   end
