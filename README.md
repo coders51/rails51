@@ -12,6 +12,12 @@ gem 'rails51'
 
 ## Capistrano Tasks
 
+To use capistrano tasks in your project add this line in your `Capfile`
+
+```ruby
+require 'rails51/capistrano'
+```
+
 ### pg:import
 
 This task imports in local postgres database a remote dump. Just call
