@@ -9,7 +9,7 @@ namespace :pg do
         raise "This task does not yet implement password authentication"
       end
 
-      local_file = "/tmp/#{now}.pg.dump.gz"
+      local_file = "/tmp/#{now}.pg.dump"
 
       if File.exists?(local_file) || File.exists?("#{local_file}.gz")
         raise "#{local_file} or #{local_file}.gz exists in file system... Is another import running?"
