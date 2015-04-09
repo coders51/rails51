@@ -3,7 +3,7 @@ namespace :pg do
   desc "Import PostgreSQL database from remote server"
   task :import do
     on primary :db do |host|
-      db = YAML.load(capture("cat #{release_path.join('config/database.yml')}")).fetch(fetch(:rails_env))
+      db = YAML.load(capture("cat #{release_path.join('config/database.yml')}")).fetch(fetch(:rails_env).to_s)
       db_name = db["database"]
       if db.key? "password"
         raise "This task does not yet implement password authentication"
