@@ -1,4 +1,5 @@
 require 'pry'
+
 namespace :pg do
   desc "Import PostgreSQL database from remote server"
   task :import do
@@ -6,7 +7,11 @@ namespace :pg do
       db = YAML.load(capture("cat #{release_path.join('config/database.yml')}")).fetch(fetch(:rails_env).to_s)
       db_name = db["database"]
       if db.key? "password"
-        raise "This task does not yet implement password authentication"
+        capture("touch ~/.pgpass && chmod 600 ~/.pgpass")
+        if capture("grep #{db_name} ~/.pgpass | wc -l ") == "0"
+          db_str = [db.fetch("host", "*"), db.fetch("port", "*"), db_name, db["username"], db["password"]].join(':')
+          capture("echo '#{db_str}' >> ~/.pgpass")
+        end
       end
 
       local_file = "/tmp/#{now}.pg.dump"

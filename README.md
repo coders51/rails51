@@ -32,9 +32,9 @@ This will:
 2. Download the file and uncompress
 3. Import in the database defined in local `database.yml` file
 
-**Known Issues:**
+**New**
 
-* Does not work with password authentication (for now)
+* Password authentication now available. The task will attempt to create the appropriate `~/.pgpass` file. Feel free to report any issue
 
 ### logs:tail
 
