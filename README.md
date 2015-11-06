@@ -36,6 +36,20 @@ This will:
 
 * Password authentication now available. The task will attempt to create the appropriate `~/.pgpass` file. Feel free to report any issue
 
+### mysql:import
+
+This task imports in local mysql database a remote dump. Just call
+
+```bash
+cap production mysql:import
+```
+
+This will:
+
+1. Dump the database on the server and gzips it. Fetch database name, user, password and eventually port from `:release_path/config/database.yml` file
+2. Download the file and uncompress
+3. Import in the database defined in local `database.yml` file
+
 ### logs:tail
 
 This task simply stream the `tail -f` results of `log/#{fetch(:rails_env, 'production')}.log` file locally.

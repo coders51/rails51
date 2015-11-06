@@ -29,7 +29,7 @@ namespace :pg do
       download! remote_dump, "#{local_file}.gz"
       execute "rm -f #{remote_dump}"
       run_locally do
-        local_db_data = YAML.load(File.read("config/database.yml"))['development']
+        local_db_data = YAML.load(ERB.new(File.read("config/database.yml")).result)['development']
         execute "gunzip #{local_file}.gz"
         execute "bundle exec rake db:drop; bundle exec rake db:create"
         execute "psql #{local_db_data['database']} < #{local_file}"
