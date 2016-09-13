@@ -14,10 +14,11 @@ namespace :mysql do
 
       remote_dump = capture("mktemp --suffix mysql.dump.gz")
 
-      cmd = "mysqldump " 
+      cmd = "mysqldump "
       cmd << " -P #{db['port']}" if db.key? 'port'
       cmd << " -u#{db['username']}" if db.key? 'username'
       cmd << " -p#{db['password']}" if db.key? 'password'
+      cmd << " -h #{db['host']}" if db.key? 'host'
       cmd << " #{db['database']} | gzip > #{remote_dump}"
 
       execute cmd
