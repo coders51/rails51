@@ -7,7 +7,7 @@ This gem adds some handy capistrano tasks (for now)
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rails51'
+gem 'rails51', github: 'coders51/rails51'
 ```
 
 ## Capistrano Tasks
